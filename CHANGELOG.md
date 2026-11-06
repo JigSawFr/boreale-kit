@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 (2026-11-06)
+
+### 🚀 Features
+
+* **sim:** let an app give the simulated user clock, `sim_local_time_set_now()` (boreale-kit#8)
+
 ## 0.1.0 (2026-11-06)
 
 First release: the foundations of the kit.
