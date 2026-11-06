@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          submodules: recursive
+          submodules: true
       - name: make test (${{ matrix.cc }})
         run: make test CC=${{ matrix.cc }} CXX=${{ matrix.cc == 'gcc' && 'g++' || 'clang++' }}
 
@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          submodules: recursive
+          submodules: true
       - name: Layer rules
         run: python3 tools/check_sources.py .
 
@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          submodules: recursive
+          submodules: true
       - name: Build the console's C for the Switch
         run: |
           set -e
@@ -57,7 +57,7 @@ jobs:
           mkdir -p build/switch
           for f in source/core/*.c; do
             "$CC" -std=gnu11 -Wall -Wextra -Wshadow -Werror -march=armv8-a+crc+crypto -mtune=cortex-a57 -mtp=soft \
-              -fPIE -ffunction-sections -fdata-sections -D__SWITCH__ -I"$DEVKITPRO/libnx/include" \
+              -fPIE -ffunction-sections -fdata-sections -D__SWITCH__ -I"$DEVKITPRO/libnx/include" -I"$DEVKITPRO/portlibs/switch/include" \
               -Isource -Isource/core -Itests/stub -Ilibrary/boreale-link/source \
               -c "$f" -o "build/switch/$(basename "$f" .c).o"
           done
