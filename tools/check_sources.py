@@ -61,7 +61,11 @@ UPWARD = re.compile(r'^\s*#\s*include\s+"((?:activity|tab)/[^"]+)"', re.M)
 
 # A flow that opens its own screen includes it (the flow is the screen's way
 # in); nothing else of action/ includes a screen.
-ACTION_SCREENS = {}
+ACTION_SCREENS = {
+    "source/action/dev_build_flow.cpp": {"activity/dev_build_activity.hpp", "activity/dev_builds_activity.hpp"},   # its two screens
+    "source/action/support_flow.cpp": {"activity/whats_new_activity.hpp"},   # "What's new" after an update
+    "source/action/update_flow.cpp": {"activity/update_activity.hpp"},   # the update offer
+}
 
 for folder in LOWER:
     for rel, text in sources(folder):

@@ -17,10 +17,22 @@ std::string version();     // "1.0.0"
 std::string commit();
 // The app's repository, "https://github.com/JigSawFr/<name>" (no trailing /).
 const char* repo_url();
+// True for a published release (built from its vX.Y.Z tag), false for any
+// other build (main, a pull request, a local one): a development build.
+bool        is_release();
+// The pull request this build was made for by CI, 0 for any other build.
+int         pr();
+// Where the running .nro is, from the SD card root ("/switch/<id>/<id>.nro"),
+// as hbloader gave it in argv[0]; empty when unknown (nxlink, desktop).
+std::string self_path();
 // Read-only mode: the service layer refuses every change (core/write_guard.h).
 bool        read_only();
 // Developer mode: the developer tools, saved in the preferences or on for this
 // session only.
 bool        dev_mode();
+
+// Funding links (.github/FUNDING.yml of every app), shown by view/funding.
+constexpr const char* SPONSORS_URL = "https://github.com/sponsors/JigSawFr";
+constexpr const char* KOFI_URL     = "https://ko-fi.com/jigsawfr";
 
 }   // namespace app
