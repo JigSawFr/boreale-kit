@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 (2026-11-06)
+
+### 🚀 Features
+
+* **kit:** the screens and flows PlayShelf and PlayGuard had twice, now shared: `ui/`, `view/`, `activity/` and `action/` (update, rollback, cleanup, crypto, dev builds, support, upload, diagnostic, changelog, what's new, funding, release notes, error hints), with `ui::app_hooks` and `rollback_flow::hooks()` for what differs per app (boreale-kit#10)
+* **kit:** `kit_text.hpp` and `kit_settings.hpp`, the string helper and the `Settings` base struct, plus the kit string catalogs in 15 languages, overridable per app under `<app id>/kit/<key>` (boreale-kit#10)
+
+### 🔧 Build
+
+* **ci:** `tools/check_resources.py` checks the catalogs and runs in CI (boreale-kit#10)
+
 ## 0.2.0 (2026-11-06)
 
 ### 🚀 Features
