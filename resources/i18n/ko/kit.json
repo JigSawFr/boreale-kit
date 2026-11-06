@@ -12,6 +12,25 @@
         "delete": "삭제",
         "later": "나중에"
     },
+    "crypto": {
+        "title": "암호화",
+        "auto": "자동",
+        "auto_long": "자동: 검증을 통과하면 하드웨어",
+        "software": "소프트웨어",
+        "hardware": "하드웨어",
+        "in_use_hardware": "{2} (하드웨어 사용 중)",
+        "in_use_software": "{2} (소프트웨어 사용 중)",
+        "measuring": "측정 중… 몇 초 걸립니다",
+        "bench_title": "암호화 속도",
+        "runs_aes": "AES: {2}",
+        "runs_sha": "SHA-256: {2}",
+        "runs_hardware": "하드웨어",
+        "runs_set_aside": "소프트웨어 (설정)",
+        "runs_failed": "소프트웨어 (하드웨어 검증 실패)",
+        "runs_software": "소프트웨어 (하드웨어 없음)",
+        "row": "{2}: 소프트웨어 {3} MB/s, 하드웨어 {4} MB/s (×{5})",
+        "row_software": "{2}: 소프트웨어 {3} MB/s (하드웨어 없음)"
+    },
     "dev": {
         "clear_cache_body": "캐시를 삭제할까요: {2}?\n\n게임 이름과 아이콘, 개발 빌드 목록입니다. 필요할 때 {0}가 다시 가져옵니다.",
         "clear_empty": "삭제할 것이 없습니다.",

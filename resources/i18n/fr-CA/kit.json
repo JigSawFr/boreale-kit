@@ -12,6 +12,25 @@
         "delete": "Supprimer",
         "later": "Plus tard"
     },
+    "crypto": {
+        "title": "Chiffrement",
+        "auto": "Automatique",
+        "auto_long": "Automatique : le matériel s'il passe sa vérification",
+        "software": "Logiciel",
+        "hardware": "Matériel",
+        "in_use_hardware": "{2} (matériel utilisé)",
+        "in_use_software": "{2} (logiciel utilisé)",
+        "measuring": "Mesure en cours… quelques secondes",
+        "bench_title": "Vitesse du chiffrement",
+        "runs_aes": "AES : {2}",
+        "runs_sha": "SHA-256 : {2}",
+        "runs_hardware": "matériel",
+        "runs_set_aside": "logiciel (réglage)",
+        "runs_failed": "logiciel (le matériel a échoué à sa vérification)",
+        "runs_software": "logiciel (pas de matériel)",
+        "row": "{2} : logiciel {3} Mo/s, matériel {4} Mo/s (×{5})",
+        "row_software": "{2} : logiciel {3} Mo/s (pas de matériel)"
+    },
     "dev": {
         "clear_cache_body": "Supprimer le cache : {2}?\n\nLes noms et icônes des jeux et la liste des versions de développement. {0} les récupère de nouveau quand il en a besoin.",
         "clear_empty": "Rien à supprimer.",

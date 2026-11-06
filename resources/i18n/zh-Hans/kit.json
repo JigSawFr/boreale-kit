@@ -12,6 +12,25 @@
         "delete": "删除",
         "later": "稍后"
     },
+    "crypto": {
+        "title": "加密",
+        "auto": "自动",
+        "auto_long": "自动：通过校验时使用硬件",
+        "software": "软件",
+        "hardware": "硬件",
+        "in_use_hardware": "{2}（正在使用硬件）",
+        "in_use_software": "{2}（正在使用软件）",
+        "measuring": "正在测量… 需要几秒钟",
+        "bench_title": "加密速度",
+        "runs_aes": "AES：{2}",
+        "runs_sha": "SHA-256：{2}",
+        "runs_hardware": "硬件",
+        "runs_set_aside": "软件（设置）",
+        "runs_failed": "软件（硬件未通过校验）",
+        "runs_software": "软件（无硬件）",
+        "row": "{2}：软件 {3} MB/s，硬件 {4} MB/s（×{5}）",
+        "row_software": "{2}：软件 {3} MB/s（无硬件）"
+    },
     "dev": {
         "clear_cache_body": "删除缓存：{2}？\n\n游戏名称和图标以及开发版本列表。{0} 需要时会重新获取。",
         "clear_empty": "没有可删除的内容。",

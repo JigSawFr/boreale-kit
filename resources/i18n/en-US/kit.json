@@ -12,6 +12,25 @@
         "delete": "Delete",
         "later": "Later"
     },
+    "crypto": {
+        "title": "Encryption",
+        "auto": "Automatic",
+        "auto_long": "Automatic: hardware when it checks out",
+        "software": "Software",
+        "hardware": "Hardware",
+        "in_use_hardware": "{2} (hardware in use)",
+        "in_use_software": "{2} (software in use)",
+        "measuring": "Measuring… a few seconds",
+        "bench_title": "Encryption speed",
+        "runs_aes": "AES: {2}",
+        "runs_sha": "SHA-256: {2}",
+        "runs_hardware": "hardware",
+        "runs_set_aside": "software (setting)",
+        "runs_failed": "software (hardware failed its check)",
+        "runs_software": "software (no hardware)",
+        "row": "{2}: software {3} MB/s, hardware {4} MB/s (×{5})",
+        "row_software": "{2}: software {3} MB/s (no hardware)"
+    },
     "dev": {
         "clear_cache_body": "Delete the cache: {2}?\n\nThe game names and icons and the development build list. {0} fetches them again when it needs them.",
         "clear_empty": "Nothing to delete.",
