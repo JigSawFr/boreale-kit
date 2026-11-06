@@ -108,6 +108,12 @@ static void test_seconds()
     CHECK(date::local_time(0, "") == "?");
 }
 
+static void test_hh_mm()
+{
+    CHECK(date::hh_mm(7, 5) == "07:05" && date::hh_mm(23, 59) == "23:59" && date::hh_mm(0, 0) == "00:00");
+    CHECK(date::hh_mm(0) == "00:00" && date::hh_mm(425) == "07:05" && date::hh_mm(24 * 60 - 1) == "23:59");
+}
+
 int main()
 {
     test_parse();
@@ -115,5 +121,6 @@ int main()
     test_weekday();
     test_iso();
     test_seconds();
-    CHECK_DONE("date parsing, day number, add, between, weekday, ISO stamp and local time assertions passed");
+    test_hh_mm();
+    CHECK_DONE("date parsing, day number, add, between, weekday, ISO stamp, local time and HH:MM assertions passed");
 }

@@ -53,6 +53,17 @@ mg::Step step(int level, size_t moved = 0)
             } };
 }
 
+// A step that also undoes (its level pushed, negated, to g_ran).
+mg::Step step_undo(int level, size_t moved = 0)
+{
+    mg::Step s = step(level);
+    s.undo     = [level, moved]() {
+        g_ran.push_back(-level);
+        return moved;
+    };
+    return s;
+}
+
 std::vector<mg::Step> start_steps()
 {
     return { step(DataDir, 2), step(LogsDirs) };
@@ -232,6 +243,46 @@ static void test_all()
     CHECK(mg::run(file, { step(LogsDirs) }, "1.2.0", nullptr, true) == 1 && state(file).level == LogsDirs);
 }
 
+static void test_undo_to()
+{
+    TempDir tmp("migrations");
+    const std::string file = tmp.path() + "/migrations.json";
+    // Nothing recorded: nothing to undo.
+    g_ran.clear();
+    CHECK(mg::undo_to(file, { step_undo(NandDirs) }, 0) == 0 && g_ran.empty());
+
+    // Done up to 3; going back to a build that knows 1: 3 then 2, highest first.
+    CHECK(mg::write(file, { NandDirs, "1.2.0" }));
+    g_ran.clear();
+    g_lines.clear();
+    CHECK(mg::undo_to(file, { step_undo(DataDir), step_undo(LogsDirs), step_undo(NandDirs) }, DataDir, log_line) == 2);
+    CHECK((g_ran == std::vector<int>{ -NandDirs, -LogsDirs }));
+    CHECK(logged("step 3 (test) undone") && logged("step 2 (test) undone"));
+    CHECK(state(file).level == NandDirs);   // the file is for earlier_build_next()
+
+    // A step above the level done was never run: left alone.
+    CHECK(mg::write(file, { LogsDirs, "1.2.0" }));
+    g_ran.clear();
+    CHECK(mg::undo_to(file, { step_undo(DataDir), step_undo(LogsDirs), step_undo(NandDirs) }, DataDir) == 1);
+    CHECK((g_ran == std::vector<int>{ -LogsDirs }));
+
+    // Level 0 (a build from before the file): every step done goes back.
+    CHECK(mg::write(file, { NandDirs, "1.2.0" }));
+    g_ran.clear();
+    CHECK(mg::undo_to(file, { step_undo(DataDir), step_undo(LogsDirs), step_undo(NandDirs) }, 0) == 3);
+
+    // A step with no undo stops it: the ones below stay as they are.
+    g_ran.clear();
+    g_lines.clear();
+    CHECK(mg::undo_to(file, { step_undo(DataDir), step(LogsDirs), step_undo(NandDirs) }, 0, log_line) == 1);
+    CHECK((g_ran == std::vector<int>{ -NandDirs }));
+    CHECK(logged("step 2 (test) cannot be undone"));
+
+    // Nothing above the previous build's level: nothing to do.
+    g_ran.clear();
+    CHECK(mg::undo_to(file, { step_undo(NandDirs) }, NandDirs) == 0 && g_ran.empty());
+}
+
 int main()
 {
     mg::set_latest(NandDirs);
@@ -242,5 +293,6 @@ int main()
     test_earlier_build_next();
     test_is_earlier();
     test_all();
+    test_undo_to();
     return CHECK_DONE("migrations tests passed");
 }

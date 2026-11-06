@@ -183,6 +183,17 @@ static void test_remove_counts()
     CHECK(out.failed == 1);
 }
 
+static void test_remove_folder()
+{
+    TempDir root("cleanup_folder");
+    make_tree(root);
+    const dc::Outcome out = dc::remove_folder(g_root + "/cache/icons");
+    CHECK(out.removed == 3 && out.bytes == 1 + 6000 + 7000 && out.failed == 0);
+    CHECK(!there("cache/icons") && there("cache/dev_builds.json"));
+    const dc::Outcome again = dc::remove_folder(g_root + "/cache/icons");   // gone: nothing
+    CHECK(again.removed == 0 && again.failed == 0);
+}
+
 static void test_size_unit()
 {
     uint64_t v = 99;
@@ -203,6 +214,7 @@ int main()
     test_logs_keep_session();
     test_missing_folders();
     test_remove_counts();
+    test_remove_folder();
     test_size_unit();
     return CHECK_DONE("data_cleanup cache, logs, removal and size tests passed");
 }

@@ -50,6 +50,32 @@ static void test_files()
     fs::write(label, "not json");
     CHECK(!rollback::read_label(label, &l));
 
+    // The level the previous build knew: kept beside the label, absent from a
+    // file written without it, and a damaged one reads as unknown.
+    int level = -1;
+    CHECK(!rollback::read_level(label, &level));
+    CHECK(rollback::write_label(label, "1.4.0", 3) && rollback::read_level(label, &level) && level == 3);
+    CHECK(rollback::read_label(label, &l) && l == "1.4.0");
+    CHECK(rollback::write_label(label, "1.2.0") && !rollback::read_level(label, &level));
+    fs::write(label, "{\"schema\": 1, \"label\": \"1.3.0\", \"level\": -2}");
+    CHECK(!rollback::read_level(label, &level));
+    fs::write(label, "{\"schema\": 1, \"label\": \"1.3.0\", \"level\": \"3\"}");
+    CHECK(!rollback::read_level(label, &level));
+    // A later schema, with a key this build does not know: the ones it knows are read.
+    fs::write(label, "{\"schema\": 9, \"label\": \"1.5.0\", \"level\": 5, \"extra\": [1]}");
+    CHECK(rollback::read_label(label, &l) && l == "1.5.0" && rollback::read_level(label, &level) && level == 5);
+    fs::write(label, "not json");
+    CHECK(!rollback::read_level(label, &level));
+
+    // Data in a newer layout than the previous build knows (unknown: no claim).
+    CHECK(rollback::recheck_due("1.4.0", "1.3.0") && rollback::recheck_due("1.4.0 (abc)", "1.4.0"));
+    CHECK(!rollback::recheck_due("1.4.0", "1.4.0") && !rollback::recheck_due("", "1.4.0"));
+    CHECK(rollback::layout_newer(4, 3));
+    CHECK(!rollback::layout_newer(4, 4));
+    CHECK(!rollback::layout_newer(3, 4));
+    CHECK(!rollback::layout_newer(4, -1));
+    CHECK(!rollback::layout_newer(0, 0));
+
     rollback::Check c;
     CHECK(!rollback::read_check(check, &c));
     c.label = "PR #38";
