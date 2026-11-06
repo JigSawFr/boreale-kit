@@ -10,10 +10,16 @@
 
 #include "../core/local_time.h"
 #include "../core/sim_env.h"
+#include "sim_local_time.h"
 #include "app_id.h"
+
+static u64 (*s_now)(void);
+
+void sim_local_time_set_now(u64 (*now)(void)) { s_now = now; }
 
 static u64 sim_now(void)
 {
+    if (s_now) return s_now();
     const long long frozen = sim_env_int(APP_ENV "_SIM_NOW", 0, 0, LLONG_MAX);
     return frozen > 0 ? (u64)frozen : (u64)time(NULL);
 }

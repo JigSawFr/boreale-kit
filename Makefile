@@ -75,6 +75,9 @@ support_SRC := source/util/date.cpp source/util/support.cpp tests/support/test.c
 patches_SRC := source/util/paths.cpp source/util/patches.cpp tests/patches/test.cpp
 number_SRC := tests/number/test.cpp
 listeners_SRC := tests/listeners/test.cpp
+sim_local_time_SRC := source/sim/sim_env.cpp tests/sim_local_time/test.cpp
+sim_local_time_CSRC := source/sim/sim_local_time.c source/core/calendar.c
+sim_local_time_CFLAGS := -std=gnu11 -Isource/core
 
 # ---------------------------------------------------------------- the runner
 TESTS := $(sort $(patsubst %_SRC,%,$(filter %_SRC,$(.VARIABLES))))
