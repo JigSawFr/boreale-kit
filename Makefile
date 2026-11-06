@@ -18,10 +18,10 @@ TESTOUT := $(BUILD)/host-tests
 JOBS    ?= $(shell nproc 2>/dev/null || echo 4)
 SAN     ?= -fsanitize=address,undefined -fno-omit-frame-pointer -fno-sanitize-recover=undefined
 COV     ?=
-# -Itests: check.h, the CHECK() every suite uses; -Itests/support: the app_id.h
+# -Itests: check.h, the CHECK() every suite uses; -Itests/stub: the app_id.h
 # of the app the tests stand in for. _GLIBCXX_ASSERTIONS: libstdc++ checks
 # what the sanitizers cannot see.
-CWARN   := -Wall -Wextra -Wshadow -Werror -D_GLIBCXX_ASSERTIONS $(SAN) $(COV) -Itests -Itests/support
+CWARN   := -Wall -Wextra -Wshadow -Werror -D_GLIBCXX_ASSERTIONS $(SAN) $(COV) -Itests -Itests/stub
 JSON_HPP := library/aurore/library/include/aurore/extern/nlohmann/json.hpp
 
 .PHONY: clean test check FORCE
@@ -32,6 +32,48 @@ TEST_CXXFLAGS   := -std=c++23 -Isource -Ilibrary/boreale-link/source -isystem li
 CALENDAR_C      := source/core/calendar.c
 CALENDAR_CFLAGS := -std=gnu11 -Isource/core
 
+migrations_SRC := source/util/paths.cpp source/util/date.cpp source/util/update.cpp source/util/migrations.cpp tests/migrations/test.cpp
+write_guard_SRC := source/core/write_guard.c tests/write_guard/test.c
+write_guard_FLAGS := -std=gnu11 -Isource/core
+dev_builds_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/date.cpp source/util/update.cpp library/aurore/library/lib/cadran/util/safe_text.cpp source/util/dev_builds.cpp source/util/zip_read.cpp source/util/github_auth.cpp source/util/secret_box.cpp source/util/aes.cpp source/sim/sim_device_key.cpp tests/dev_builds/test.cpp
+dev_builds_LIBS := -lz
+dev_builds_net_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/date.cpp source/util/update.cpp library/aurore/library/lib/cadran/util/safe_text.cpp source/util/dev_builds.cpp source/util/zip_read.cpp source/util/github_auth.cpp source/util/secret_box.cpp source/util/aes.cpp source/sim/sim_device_key.cpp source/util/http_logic.cpp source/util/zip_write.cpp source/sim/sim_net.cpp source/sim/sim_env.cpp source/util/dev_builds_net.cpp tests/dev_builds_net/test.cpp
+dev_builds_net_LIBS := -lz
+session_log_SRC := source/util/paths.cpp source/util/log_files.cpp source/util/session_log.cpp source/util/crash_report.cpp tests/session_log/test.cpp
+session_log_CFLAGS := -std=c11 -Isource/util
+session_log_CSRC := source/util/crash_dump.c
+diagnostics_logic_SRC := source/util/paths.cpp source/util/patches.cpp source/util/diagnostics_logic.cpp tests/diagnostics_logic/test.cpp
+update_SRC := source/util/date.cpp source/util/update.cpp tests/update/test.cpp
+frame_stats_SRC := source/util/paths.cpp source/util/frame_stats.cpp tests/frame_stats/test.cpp
+rollback_SRC := source/util/paths.cpp source/util/rollback.cpp tests/rollback/test.cpp
+date_SRC := source/util/date.cpp tests/date/test.cpp
+startup_SRC := source/util/startup.c tests/startup/test.c
+startup_FLAGS := -std=gnu11 -Isource/util
+crash_dump_FLAGS := -std=c11 -Isource/util
+crash_dump_SRC := source/util/crash_dump.c tests/crash_dump/test.c
+text_util_SRC := tests/text_util/test.cpp
+worker_threads_SRC := source/util/worker_threads.cpp tests/worker_threads/test.cpp
+worker_threads_LIBS := -pthread
+# The sealed bytes are the app's: the suite runs once under each real app_id.h.
+secret_box_playshelf_SRC   := source/util/secret_box.cpp source/util/aes.cpp source/sim/sim_device_key.cpp source/util/sha256.cpp source/util/paths.cpp tests/secret_box/test.cpp
+secret_box_playshelf_FLAGS := -std=c++23 -Itests/stub/playshelf -Isource -isystem library/aurore/library/include
+secret_box_playguard_SRC   := source/util/secret_box.cpp source/util/aes.cpp source/sim/sim_device_key.cpp source/util/sha256.cpp source/util/paths.cpp tests/secret_box/test.cpp
+secret_box_playguard_FLAGS := -std=c++23 -Itests/stub/playguard -Isource -isystem library/aurore/library/include
+data_cleanup_SRC := source/util/data_cleanup.cpp tests/data_cleanup/test.cpp
+launcher_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source -Isource/core
+launcher_SRC := source/util/paths.cpp source/util/launcher.cpp tests/launcher/test.cpp
+launcher_CSRC := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_json.c library/boreale-link/source/bl_jread.c library/boreale-link/source/bl_app.c library/boreale-link/source/bl_notices.c library/boreale-link/source/bl_updates.c source/core/calendar.c
+http_logic_SRC := source/util/http_logic.cpp tests/http_logic/test.cpp
+changelog_SRC := source/util/date.cpp source/util/changelog.cpp source/util/update.cpp tests/changelog/test.cpp
+perf_SRC := source/util/perf.cpp tests/perf/test.cpp
+crypto_SRC := source/util/crypto_backend.cpp source/util/crypto_bench.cpp source/util/crypto_hw.cpp source/util/aes.cpp source/util/sha256.cpp tests/crypto/test.cpp
+log_files_SRC := source/util/paths.cpp source/util/log_files.cpp tests/log_files/test.cpp
+log_upload_SRC := source/util/paths.cpp source/util/log_files.cpp source/util/log_upload.cpp tests/log_upload/test.cpp
+calendar_FLAGS := -std=gnu11 -Isource/core
+calendar_SRC := source/core/calendar.c tests/calendar/test.c
+support_SRC := source/util/date.cpp source/util/support.cpp tests/support/test.cpp
+patches_SRC := source/util/paths.cpp source/util/patches.cpp tests/patches/test.cpp
+number_SRC := tests/number/test.cpp
 listeners_SRC := tests/listeners/test.cpp
 
 # ---------------------------------------------------------------- the runner
