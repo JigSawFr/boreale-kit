@@ -62,6 +62,7 @@ secret_box_playguard_FLAGS := -std=c++23 -Itests/stub/playguard -Isource -isyste
 data_cleanup_SRC := source/util/data_cleanup.cpp tests/data_cleanup/test.cpp
 launcher_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source -Isource/core
 launcher_SRC := source/util/paths.cpp source/util/launcher.cpp tests/launcher/test.cpp
+sphaira_entry_SRC := source/util/paths.cpp source/util/sphaira_entry.cpp tests/sphaira_entry/test.cpp
 launcher_CSRC := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_json.c library/boreale-link/source/bl_jread.c library/boreale-link/source/bl_app.c library/boreale-link/source/bl_notices.c library/boreale-link/source/bl_updates.c source/core/calendar.c
 http_logic_SRC := source/util/http_logic.cpp tests/http_logic/test.cpp
 changelog_SRC := source/util/date.cpp source/util/changelog.cpp source/util/update.cpp tests/changelog/test.cpp

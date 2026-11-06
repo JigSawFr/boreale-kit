@@ -13,6 +13,7 @@
 #include "kit_settings.hpp"
 #include "util/date.hpp"
 #include "util/launcher.hpp"
+#include "util/sphaira_entry.hpp"
 
 using namespace aurore::literals;
 
@@ -178,10 +179,19 @@ void update_in_place()
     });
 }
 
+// sphaira's GitHub menu has the app (sphaira_entry): it shows a release as
+// soon as it is on GitHub, the store's review does not matter.
+bool via_github(const launcher::Target& target)
+{
+    return target.store == launcher::Store::Sphaira && kit_settings::get().sphaira_entry
+        && sphaira_entry::sphaira_found();
+}
+
 void hand_over(const launcher::Target& target, const std::string& manual)
 {
     const std::string name = store_name(target.store);
-    ui::confirm(kit_text::str("update/open_body", name), kit_text::str("update/open_confirm", name),
+    const char* body = via_github(target) ? "update/open_body_github" : "update/open_body";
+    ui::confirm(kit_text::str(body, name), kit_text::str("update/open_confirm", name),
                 [target, manual]() {
                     const auto& may = ui::app_hooks::get().may_replace_self;
                     if (may && !may(true)) return;
@@ -204,7 +214,7 @@ void open_store()
         return;
     }
     const std::string latest = kit_settings::get().update_latest;
-    if (latest.empty() || !launcher::installed_by_store() || busy()) {
+    if (latest.empty() || via_github(target) || !launcher::installed_by_store() || busy()) {
         hand_over(target, manual);
         return;
     }
@@ -247,8 +257,22 @@ void check_once(std::function<void(const Offer&)> done)
     run_check(std::move(done));
 }
 
+void sync_sphaira_entry()
+{
+    const bool on = kit_settings::get().sphaira_entry;
+    ui::in_background("sphaira entry", [on]() {
+        std::string err;
+        const auto done = sphaira_entry::sync(on, &err);
+        if (done == sphaira_entry::Outcome::Failed)
+            aurore::Logger::warning("update: sphaira's GitHub entry not updated ({})", err);
+        else if (done != sphaira_entry::Outcome::Unchanged)
+            aurore::Logger::info("update: sphaira's GitHub entry {}", done == sphaira_entry::Outcome::Written ? "written" : "removed");
+    });
+}
+
 void at_start(aurore::Activity* main)
 {
+    sync_sphaira_entry();
     const auto& cfg = kit_settings::get();
     const std::string today = ui::today_date();
     const bool pending = update::offer_at_start(cfg.update_latest, app::version(), snooze(), today);

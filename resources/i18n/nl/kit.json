@@ -239,6 +239,7 @@
         "no_release": "Er is nog geen {0}-versie gepubliceerd: {2} is een ontwikkelversie.",
         "notes_none": "De notities van deze versie konden niet worden gelezen. Alle versies: {2}",
         "open_body": "{0} wordt gesloten en {2} wordt geopend. Zoek daar {0} op om het bij te werken.",
+        "open_body_github": "{0} wordt gesloten en {2} wordt geopend. Zoek {0} op in Menus › GitHub: elke versie staat daar zodra ze uit is.",
         "open_confirm": "{2} openen",
         "recommended": "{2} (aanbevolen)",
         "released": "Uitgebracht op {2}.",

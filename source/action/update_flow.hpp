@@ -42,6 +42,10 @@ void check_once(std::function<void(const Offer&)> done);
 // up on `main` once nothing else is in front of it, unless postponed.
 void at_start(aurore::Activity* main);
 
+// Brings the app's entry in sphaira's GitHub menu in line with About ›
+// Entry in sphaira (in the background): at start-up, and when it changes.
+void sync_sphaira_entry();
+
 // A newer release is known (the last check's) and not postponed: its screen
 // comes at start-up (an app that offers other updates leaves them for later then).
 bool pending_at_start();
