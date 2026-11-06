@@ -23,6 +23,9 @@ struct Settings
     // "sphaira", "appstore", "manual".
     std::string update_via;
     bool        update_daily = false;  // check for updates at start-up, once a day
+    // About › Entry in sphaira: the app's own entry in sphaira's GitHub menu
+    // (util/sphaira_entry.hpp), kept up to date at start-up, removed when off.
+    bool        sphaira_entry = true;
     std::string update_checked;        // "YYYY-MM-DD" of the last check, any kind
     // The latest release the last check found ("1.2.0"): a newer one than the
     // running version is offered at each start-up (action/update_flow) until

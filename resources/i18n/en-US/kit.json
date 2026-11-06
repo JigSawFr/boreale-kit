@@ -239,6 +239,7 @@
         "no_release": "No {0} release is published yet: {2} is a development build.",
         "notes_none": "No notes could be read for this version. All versions: {2}",
         "open_body": "{0} will close and open {2}. Find {0} there to update it.",
+        "open_body_github": "{0} will close and open {2}. Find {0} in Menus › GitHub: it offers each release as soon as it is out.",
         "open_confirm": "Open {2}",
         "recommended": "{2} (recommended)",
         "released": "Released on {2}.",

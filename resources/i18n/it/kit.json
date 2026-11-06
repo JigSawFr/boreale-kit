@@ -239,6 +239,7 @@
         "no_release": "Nessuna versione di {0} è ancora stata pubblicata: {2} è una versione di sviluppo.",
         "notes_none": "Impossibile leggere le note di questa versione. Tutte le versioni: {2}",
         "open_body": "{0} verrà chiuso e verrà aperto {2}. Lì cerca {0} per aggiornarlo.",
+        "open_body_github": "{0} verrà chiuso e verrà aperto {2}. Cerca {0} in Menus › GitHub: ogni versione è disponibile lì appena esce.",
         "open_confirm": "Apri {2}",
         "recommended": "{2} (consigliato)",
         "released": "Pubblicata il {2}.",
