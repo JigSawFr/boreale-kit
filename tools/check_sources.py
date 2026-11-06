@@ -82,7 +82,16 @@ for rel, allowed in sorted(ACTION_SCREENS.items()):
 # ---------------------------------------------------------- source/core
 # The console's own: the simulator stands in for them on the desktop
 # (source/sim/), or the desktop has no use for them.
-CONSOLE_ONLY = {}
+CONSOLE_ONLY = {
+    "crash_handler.c": "the console's exception handler",
+    "device_key.c": "sim_device_key.cpp",
+    "local_time.c": "sim_local_time.c",
+    "nacp.c": "a homebrew's control data, read on the console only for now",
+    "nacp_read.c": "the same",
+    "platform.c": "sim_platform.cpp",
+    "startup_hook.c": "libnx's userAppInit",
+    "sysinfo.c": "sim_sysinfo.c",
+}
 
 
 def read(path):
