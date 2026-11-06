@@ -12,6 +12,25 @@
         "delete": "Löschen",
         "later": "Später"
     },
+    "crypto": {
+        "title": "Verschlüsselung",
+        "auto": "Automatisch",
+        "auto_long": "Automatisch: Hardware, wenn sie die Prüfung besteht",
+        "software": "Software",
+        "hardware": "Hardware",
+        "in_use_hardware": "{2} (Hardware aktiv)",
+        "in_use_software": "{2} (Software aktiv)",
+        "measuring": "Messung läuft… einige Sekunden",
+        "bench_title": "Verschlüsselungsgeschwindigkeit",
+        "runs_aes": "AES: {2}",
+        "runs_sha": "SHA-256: {2}",
+        "runs_hardware": "Hardware",
+        "runs_set_aside": "Software (Einstellung)",
+        "runs_failed": "Software (Hardware hat die Prüfung nicht bestanden)",
+        "runs_software": "Software (keine Hardware)",
+        "row": "{2}: Software {3} MB/s, Hardware {4} MB/s (×{5})",
+        "row_software": "{2}: Software {3} MB/s (keine Hardware)"
+    },
     "dev": {
         "clear_cache_body": "Cache löschen: {2}?\n\nDie Spielnamen und -symbole und die Liste der Entwicklungsversionen. {0} lädt sie erneut, wenn es sie braucht.",
         "clear_empty": "Nichts zu löschen.",

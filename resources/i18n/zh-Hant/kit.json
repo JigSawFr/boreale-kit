@@ -12,6 +12,25 @@
         "delete": "刪除",
         "later": "稍後"
     },
+    "crypto": {
+        "title": "加密",
+        "auto": "自動",
+        "auto_long": "自動：通過驗證時使用硬體",
+        "software": "軟體",
+        "hardware": "硬體",
+        "in_use_hardware": "{2}（正在使用硬體）",
+        "in_use_software": "{2}（正在使用軟體）",
+        "measuring": "正在測量… 需要幾秒鐘",
+        "bench_title": "加密速度",
+        "runs_aes": "AES：{2}",
+        "runs_sha": "SHA-256：{2}",
+        "runs_hardware": "硬體",
+        "runs_set_aside": "軟體（設定）",
+        "runs_failed": "軟體（硬體未通過驗證）",
+        "runs_software": "軟體（無硬體）",
+        "row": "{2}：軟體 {3} MB/s，硬體 {4} MB/s（×{5}）",
+        "row_software": "{2}：軟體 {3} MB/s（無硬體）"
+    },
     "dev": {
         "clear_cache_body": "刪除快取：{2}？\n\n遊戲名稱和圖示以及開發版本清單。{0} 需要時會重新取得。",
         "clear_empty": "沒有可刪除的內容。",

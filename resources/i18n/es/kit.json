@@ -12,6 +12,25 @@
         "delete": "Eliminar",
         "later": "Más tarde"
     },
+    "crypto": {
+        "title": "Cifrado",
+        "auto": "Automático",
+        "auto_long": "Automático: hardware si pasa la comprobación",
+        "software": "Software",
+        "hardware": "Hardware",
+        "in_use_hardware": "{2} (hardware en uso)",
+        "in_use_software": "{2} (software en uso)",
+        "measuring": "Midiendo… unos segundos",
+        "bench_title": "Velocidad de cifrado",
+        "runs_aes": "AES: {2}",
+        "runs_sha": "SHA-256: {2}",
+        "runs_hardware": "hardware",
+        "runs_set_aside": "software (ajuste)",
+        "runs_failed": "software (el hardware no pasó la comprobación)",
+        "runs_software": "software (sin hardware)",
+        "row": "{2}: software {3} MB/s, hardware {4} MB/s (×{5})",
+        "row_software": "{2}: software {3} MB/s (sin hardware)"
+    },
     "dev": {
         "clear_cache_body": "¿Borrar la caché: {2}?\n\nLos nombres e iconos de los juegos y la lista de versiones de desarrollo. {0} los vuelve a obtener cuando los necesita.",
         "clear_empty": "No hay nada que eliminar.",

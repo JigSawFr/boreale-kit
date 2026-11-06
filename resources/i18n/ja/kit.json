@@ -12,6 +12,25 @@
         "delete": "削除",
         "later": "あとで"
     },
+    "crypto": {
+        "title": "暗号化",
+        "auto": "自動",
+        "auto_long": "自動：検証に通ればハードウェア",
+        "software": "ソフトウェア",
+        "hardware": "ハードウェア",
+        "in_use_hardware": "{2}（ハードウェア使用中）",
+        "in_use_software": "{2}（ソフトウェア使用中）",
+        "measuring": "計測中… 数秒かかります",
+        "bench_title": "暗号化の速度",
+        "runs_aes": "AES：{2}",
+        "runs_sha": "SHA-256：{2}",
+        "runs_hardware": "ハードウェア",
+        "runs_set_aside": "ソフトウェア（設定）",
+        "runs_failed": "ソフトウェア（ハードウェアが検証に失敗）",
+        "runs_software": "ソフトウェア（ハードウェアなし）",
+        "row": "{2}：ソフトウェア {3} MB/s、ハードウェア {4} MB/s（×{5}）",
+        "row_software": "{2}：ソフトウェア {3} MB/s（ハードウェアなし）"
+    },
     "dev": {
         "clear_cache_body": "キャッシュを削除しますか：{2}？\n\nゲーム名とアイコン、開発版ビルドの一覧です。必要になったときに {0} が再取得します。",
         "clear_empty": "削除するものはありません。",

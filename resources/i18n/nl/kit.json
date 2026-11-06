@@ -12,6 +12,25 @@
         "delete": "Verwijderen",
         "later": "Later"
     },
+    "crypto": {
+        "title": "Versleuteling",
+        "auto": "Automatisch",
+        "auto_long": "Automatisch: hardware als die de controle doorstaat",
+        "software": "Software",
+        "hardware": "Hardware",
+        "in_use_hardware": "{2} (hardware in gebruik)",
+        "in_use_software": "{2} (software in gebruik)",
+        "measuring": "Meten… een paar seconden",
+        "bench_title": "Snelheid van versleuteling",
+        "runs_aes": "AES: {2}",
+        "runs_sha": "SHA-256: {2}",
+        "runs_hardware": "hardware",
+        "runs_set_aside": "software (instelling)",
+        "runs_failed": "software (hardware zakte voor de controle)",
+        "runs_software": "software (geen hardware)",
+        "row": "{2}: software {3} MB/s, hardware {4} MB/s (×{5})",
+        "row_software": "{2}: software {3} MB/s (geen hardware)"
+    },
     "dev": {
         "clear_cache_body": "Cache verwijderen: {2}?\n\nDe namen en pictogrammen van de games en de lijst met ontwikkelversies. {0} haalt ze opnieuw op wanneer nodig.",
         "clear_empty": "Niets te verwijderen.",
