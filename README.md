@@ -26,5 +26,6 @@ differently gives the key `<app id>/kit/<section>/<key>` in its own catalog.
 `tools/check_resources.py` checks the keys, the languages and the arguments.
 
 `make test` runs the host tests (gcc or clang, with the sanitizers);
-`make check` adds the layer rules (`tools/check_sources.py`) and the string
+`make check` adds the layer rules and the pin of `library/aurore` on a release
+tag (`tools/check_sources.py`) and the string
 catalogs (`tools/check_resources.py`).
