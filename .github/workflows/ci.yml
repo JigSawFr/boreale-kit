@@ -1,0 +1,41 @@
+name: ci
+
+# The host tests under gcc and clang with the sanitizers, and the layer rules
+# (tools/check_sources.py). The Switch and desktop builds of the console-bound
+# files join with the modules that need them.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  host-tests:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        cc: [ gcc, clang ]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: recursive
+      - name: make test (${{ matrix.cc }})
+        run: make test CC=${{ matrix.cc }} CXX=${{ matrix.cc == 'gcc' && 'g++' || 'clang++' }}
+
+  sources:
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: recursive
+      - name: Layer rules
+        run: python3 tools/check_sources.py .
