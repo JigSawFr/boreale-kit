@@ -39,6 +39,8 @@ jobs:
           submodules: true
       - name: Layer rules
         run: python3 tools/check_sources.py .
+      - name: String catalogs
+        run: python3 tools/check_resources.py .
 
   switch:
     runs-on: ubuntu-26.04
