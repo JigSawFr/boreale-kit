@@ -171,5 +171,5 @@ int main()
     test_bounds();
     test_others();
     test_app();
-    return CHECK_DONE("shared_bell_logic: written, kept, bounded, the others read, the registry, the routes assertions passed");
+    return CHECK_DONE("shared_bell_logic: written, kept, bounded, the others read, the registry assertions passed");
 }
