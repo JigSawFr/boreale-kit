@@ -81,6 +81,15 @@ write_queue_logic_LIBS := -pthread
 sim_local_time_SRC := source/sim/sim_env.cpp tests/sim_local_time/test.cpp
 sim_local_time_CSRC := source/sim/sim_local_time.c source/core/calendar.c
 sim_local_time_CFLAGS := -std=gnu11 -Isource/core
+shared_bell_logic_SRC   := source/action/shared_bell_logic.cpp source/util/date.cpp source/util/update.cpp tests/shared_bell_logic/test.cpp
+shared_bell_logic_CSRC  := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_json.c library/boreale-link/source/bl_jread.c library/boreale-link/source/bl_app.c library/boreale-link/source/bl_notices.c library/boreale-link/source/bl_updates.c $(CALENDAR_C)
+shared_bell_logic_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source -Isource/core
+shared_look_SRC   := source/action/shared_look.cpp tests/shared_look/test.cpp
+shared_look_CSRC  := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_prefs.c
+shared_look_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source
+boreale_apps_logic_SRC   := source/action/boreale_apps_logic.cpp source/action/shared_bell_logic.cpp source/util/date.cpp source/util/update.cpp tests/boreale_apps_logic/test.cpp
+boreale_apps_logic_CSRC  := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_json.c library/boreale-link/source/bl_jread.c library/boreale-link/source/bl_app.c library/boreale-link/source/bl_notices.c library/boreale-link/source/bl_updates.c $(CALENDAR_C)
+boreale_apps_logic_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source -Isource/core
 
 # ---------------------------------------------------------------- the runner
 TESTS := $(sort $(patsubst %_SRC,%,$(filter %_SRC,$(.VARIABLES))))
