@@ -289,6 +289,13 @@ bool perform(const std::string& url, const Extra& x, std::string* body, std::str
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, std::min(timeout_s, 30L));
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeout_s);
     if (!x.range.empty()) curl_easy_setopt(curl, CURLOPT_RANGE, x.range.c_str());
+    // An answer kept in memory (JSON, text) is asked compressed, in whatever
+    // libcurl was built to read (gzip on the console), and handed over as it
+    // was before: several times fewer bytes on the wire. `max_bytes` still counts what
+    // is handed over, so a small answer that unfolds into a huge one is cut
+    // all the same. Never a file or a range: their bytes are counted,
+    // resumed and checked as the server has them.
+    if (!to_file && x.range.empty()) curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "");
     curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, on_header);
     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &sink);
     if (to_file || (form && !x.call->file_path.empty())) {   // a long transfer: give up on a stall rather than at the end
