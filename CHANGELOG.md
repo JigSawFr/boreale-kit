@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0 (2026-11-13)
+
+### 🚀 Features
+
+* **action:** the registry of the Boréale apps, the shared bell and the shared look, which the apps had twice (boreale-kit#12)
+* **update:** keep the app's entry in sphaira's GitHub menu (boreale-kit#14)
+* **http:** ask for compressed answers when they are kept in memory: several times fewer bytes for a JSON, files and ranges left as they are (boreale-kit#19)
+
+### 🐞 Bug Fixes
+
+* **crypto:** one OK button and translated texts for the encryption screens (boreale-kit#13)
+
+### 🔧 Build
+
+* **ci:** fail when `library/aurore` points at a commit that is no release tag (boreale-kit#15)
+
 ## 0.3.0 (2026-11-06)
 
 ### 🚀 Features
