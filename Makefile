@@ -46,6 +46,7 @@ diagnostics_logic_SRC := source/util/paths.cpp source/util/patches.cpp source/ut
 update_SRC := source/util/date.cpp source/util/update.cpp tests/update/test.cpp
 frame_stats_SRC := source/util/paths.cpp source/util/frame_stats.cpp tests/frame_stats/test.cpp
 rollback_SRC := source/util/paths.cpp source/util/rollback.cpp tests/rollback/test.cpp
+sysmodule_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp tests/sysmodule/test.cpp
 date_SRC := source/util/date.cpp tests/date/test.cpp
 startup_SRC := source/util/startup.c tests/startup/test.c
 startup_FLAGS := -std=gnu11 -Isource/util
