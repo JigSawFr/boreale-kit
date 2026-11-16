@@ -49,6 +49,9 @@ rollback_SRC := source/util/paths.cpp source/util/rollback.cpp tests/rollback/te
 sysmodule_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp tests/sysmodule/test.cpp
 sysmodule_flow_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp source/action/sysmodule_flow.cpp tests/sysmodule_flow/test.cpp
 agent_manage_logic_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp source/action/agent_manage_logic.cpp tests/agent_manage_logic/test.cpp
+link_conf_logic_SRC := source/util/paths.cpp source/action/link_conf_logic.cpp tests/link_conf_logic/test.cpp
+link_conf_logic_CSRC := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_link_conf.c
+link_conf_logic_CFLAGS := -std=gnu11 -Ilibrary/boreale-link/source
 sysmodule_nx_SRC := tests/sysmodule_nx/test.cpp source/sim/sim_env.cpp
 sysmodule_nx_CSRC := source/sim/sim_sysmodule.c
 sysmodule_nx_CFLAGS := -std=gnu11 -Isource/core -Itests/stub
