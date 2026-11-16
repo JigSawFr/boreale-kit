@@ -52,7 +52,7 @@ std::string app_file(const std::string& sd_root)
     return under(sd_root, path);
 }
 
-std::string app_text(const std::string& version, const std::string& nro, const std::string& previous)
+std::string app_text(const std::string& version, const std::string& nro, const std::string& previous, int publish)
 {
     BlApp a;
     bl_app_defaults(&a);
@@ -61,6 +61,7 @@ std::string app_text(const std::string& version, const std::string& nro, const s
     copy(a.name, sizeof(a.name), APP_NAME);
     copy(a.version, sizeof(a.version), version);
     copy(a.repo, sizeof(a.repo), "JigSawFr/" APP_NAME);
+    if (publish >= 0) a.publish = publish != 0;
     const std::string under_root = !nro.empty() && nro[0] == '/' ? nro.substr(1) : nro;
     if (!under_root.empty() && under_root.size() < sizeof(a.nro)) copy(a.nro, sizeof(a.nro), under_root);
     std::string text(2048, '\0');

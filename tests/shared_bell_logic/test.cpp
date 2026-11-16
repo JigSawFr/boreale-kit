@@ -160,6 +160,13 @@ static void test_app()
     const std::string t2 = shared_bell_logic::app_text("1.5.0", "", t + "future_key=1\n");
     CHECK(has(t2, "version=1.5.0\n") && has(t2, "nro=switch/KitTest/KitTest.nro\n") && has(t2, "future_key=1\n"));
     CHECK(shared_bell_logic::app_text("1.5.0", "", "schema=2\nname=KitTest\n").empty());   // a newer file: left alone
+    // The publish setting: absent means no, -1 keeps it, 0 and 1 set it.
+    CHECK(!has(t, "publish=1\n"));
+    const std::string on = shared_bell_logic::app_text("1.4.0", "", t, 1);
+    CHECK(has(on, "publish=1\n"));
+    CHECK(shared_bell_logic::app_text("1.4.0", "", on).empty());          // kept
+    CHECK(shared_bell_logic::app_text("1.4.0", "", on, 1).empty());       // already so: not written
+    CHECK(!has(shared_bell_logic::app_text("1.4.0", "", on, 0), "publish=1\n"));
 }
 
 int main()
