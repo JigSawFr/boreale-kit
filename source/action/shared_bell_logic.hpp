@@ -25,9 +25,11 @@ constexpr const char* MODULE = APP_ID;
 // for this version and .nro (from the SD card's root, "/switch/…"; "" keeps
 // the one `previous` says), read over `previous`: "" when nothing changed
 // (the SD card is not written at each start) or when a newer version wrote
-// it.
+// it. `publish` is the app's setting that lets the shared agent carry its
+// module: 1 writes `publish=1`, 0 writes `publish=0`, -1 keeps what `previous`
+// says (absent: not published).
 std::string app_file(const std::string& sd_root);
-std::string app_text(const std::string& version, const std::string& nro, const std::string& previous);
+std::string app_text(const std::string& version, const std::string& nro, const std::string& previous, int publish = -1);
 
 struct Entry
 {
