@@ -48,6 +48,9 @@ frame_stats_SRC := source/util/paths.cpp source/util/frame_stats.cpp tests/frame
 rollback_SRC := source/util/paths.cpp source/util/rollback.cpp tests/rollback/test.cpp
 sysmodule_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp tests/sysmodule/test.cpp
 sysmodule_flow_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp source/action/sysmodule_flow.cpp tests/sysmodule_flow/test.cpp
+sysmodule_nx_SRC := tests/sysmodule_nx/test.cpp source/sim/sim_env.cpp
+sysmodule_nx_CSRC := source/sim/sim_sysmodule.c
+sysmodule_nx_CFLAGS := -std=gnu11 -Isource/core -Itests/stub
 date_SRC := source/util/date.cpp tests/date/test.cpp
 startup_SRC := source/util/startup.c tests/startup/test.c
 startup_FLAGS := -std=gnu11 -Isource/util

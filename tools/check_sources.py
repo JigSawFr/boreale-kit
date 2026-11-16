@@ -99,6 +99,7 @@ CONSOLE_ONLY = {
     "platform.c": "sim_platform.cpp",
     "startup_hook.c": "libnx's userAppInit",
     "sysinfo.c": "sim_sysinfo.c",
+    "sysmodule_nx.c": "sim_sysmodule.c",
 }
 
 
