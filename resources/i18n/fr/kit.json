@@ -8,6 +8,53 @@
         "section_changelog": "Nouveautés de la {2}",
         "support_body": "{0} est gratuit, libre et sans publicité. S'il vous est utile, vous pouvez soutenir son développement : scannez un code avec votre téléphone."
     },
+    "agent": {
+        "about": "L'agent Boréale maintient en arrière-plan la connexion de la console à votre broker (Home Assistant), pour tous les homebrews Boréale à la fois. {0} en porte une copie et peut l'installer, le mettre à jour, le démarrer et l'arrêter.",
+        "at_boot": "Démarrer avec la console",
+        "bundled_version": "{0} porte la version {2} ({3})",
+        "busy": "Un autre changement de l'agent est en cours",
+        "by_hand": "installé à la main",
+        "confirm_install": "Installer l'agent Boréale sur la carte SD et le démarrer maintenant ? Il démarrera ensuite avec la console.",
+        "confirm_remove": "Retirer l'agent Boréale ? Sa connexion au broker s'arrête, pour tous les homebrews Boréale.",
+        "confirm_update": "Mettre à jour l'agent Boréale ? Il quitte un instant le broker, et la version précédente est remise si la nouvelle ne répond pas.",
+        "error": "L'agent n'a pas pu être modifié",
+        "install": "Installer",
+        "install_undone": "L'agent n'a pas été installé : {2}",
+        "installed": "L'agent est installé",
+        "installed_version": "Sur la carte SD : version {2} ({3})",
+        "installing": "Installation de l'agent…",
+        "meta_err": "L'agent est en place, mais ses informations n'ont pas pu être écrites",
+        "no_answer": "Le nouvel agent ne répond pas",
+        "not_bundled": "Cette version de {0} ne porte pas l'agent",
+        "other_protocol": "L'agent parle un autre protocole ({2}) : mettez à jour {0} ou l'agent",
+        "remove": "Retirer",
+        "removed": "L'agent est retiré",
+        "running": "en marche",
+        "short": {
+            "installed": "Installé",
+            "not_installed": "Non installé",
+            "update": "Mise à jour disponible"
+        },
+        "start": "Démarrer maintenant",
+        "start_failed": "Le nouvel agent n'a pas démarré, le précédent est revenu : {2}",
+        "started": "L'agent est démarré",
+        "state": {
+            "installed": "Installé",
+            "not_bundled": "Non installé (non porté par cette version)",
+            "not_installed": "Non installé",
+            "update": "Mise à jour disponible"
+        },
+        "status": "État",
+        "stop": "Arrêter maintenant",
+        "stopped": "L'agent est arrêté",
+        "stopped_state": "arrêté",
+        "title": "Agent Boréale",
+        "update": "Mettre à jour",
+        "update_failed": "L'agent n'a pas été mis à jour : {2}",
+        "updated": "L'agent est mis à jour",
+        "updating": "Mise à jour de l'agent…",
+        "where": "Dossier : {2}"
+    },
     "common": {
         "delete": "Supprimer",
         "later": "Plus tard"

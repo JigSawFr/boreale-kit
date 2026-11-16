@@ -8,6 +8,53 @@
         "section_changelog": "{2} 更新內容",
         "support_body": "{0} 免費、開源且無廣告。如果它對您有幫助，可以支持它的開發：用手機掃描 QR 碼。"
     },
+    "agent": {
+        "about": "The Boréale agent keeps the console's connection to your broker (Home Assistant) up in the background, for every Boréale homebrew at once. {0} carries a copy and can install, update, start and stop it.",
+        "at_boot": "Start with the console",
+        "bundled_version": "{0} carries version {2} ({3})",
+        "busy": "Another change to the agent is going on",
+        "by_hand": "installed by hand",
+        "confirm_install": "Install the Boréale agent on the SD card and start it now? It starts with the console from then on.",
+        "confirm_remove": "Remove the Boréale agent? Its connection to the broker stops, for every Boréale homebrew.",
+        "confirm_update": "Update the Boréale agent? It leaves the broker for a moment, and the previous version is put back if the new one does not answer.",
+        "error": "The agent could not be changed",
+        "install": "Install",
+        "install_undone": "The agent was not installed: {2}",
+        "installed": "The agent is installed",
+        "installed_version": "On the SD card: version {2} ({3})",
+        "installing": "Installing the agent…",
+        "meta_err": "The agent is in place, but its information could not be written",
+        "no_answer": "The new agent does not answer",
+        "not_bundled": "This build of {0} does not carry the agent",
+        "other_protocol": "The agent speaks another protocol ({2}): update {0} or the agent",
+        "remove": "Remove",
+        "removed": "The agent is removed",
+        "running": "running",
+        "short": {
+            "installed": "Installed",
+            "not_installed": "Not installed",
+            "update": "Update available"
+        },
+        "start": "Start now",
+        "start_failed": "The new agent did not start, the previous one is back: {2}",
+        "started": "The agent is started",
+        "state": {
+            "installed": "Installed",
+            "not_bundled": "Not installed (not carried by this build)",
+            "not_installed": "Not installed",
+            "update": "Update available"
+        },
+        "status": "State",
+        "stop": "Stop now",
+        "stopped": "The agent is stopped",
+        "stopped_state": "stopped",
+        "title": "Boréale agent",
+        "update": "Update",
+        "update_failed": "The agent was not updated: {2}",
+        "updated": "The agent is updated",
+        "updating": "Updating the agent…",
+        "where": "Folder: {2}"
+    },
     "common": {
         "delete": "刪除",
         "later": "稍後"
