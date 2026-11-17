@@ -100,7 +100,7 @@ std::string toolbox_json(const Module& m);
 // put back and started again.
 enum class Step
 {
-    Shutdown,   // ask it to leave the broker (PrepareShutdown)
+    Shutdown,   // ask it to leave the broker (bl:link's Shutdown)
     Stop,
     Swap,       // install(keep_backup)
     Start,
