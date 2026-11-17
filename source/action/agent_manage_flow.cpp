@@ -68,6 +68,13 @@ void leave(std::function<void()> then)
     if (then) then();
 }
 
+// The app's way when it has one (hooks().leave), else the kit's.
+void leave_agent(std::function<void()> then)
+{
+    if (hooks().leave) hooks().leave(std::move(then));
+    else leave(std::move(then));
+}
+
 // Whether the new agent answers: bl:link's Info, with the protocol this app speaks.
 sysmodule_flow::Answer answers(std::string& why)
 {
@@ -90,8 +97,8 @@ sysmodule_flow::Host host()
     h.launch = [](uint64_t tid) { const Result rc = sysmodule_launch(tid); return R_FAILED(rc) ? (uint32_t)rc : 0u; };
     h.terminate = [](uint64_t tid) { const Result rc = sysmodule_terminate(tid); return R_FAILED(rc) ? (uint32_t)rc : 0u; };
     h.rc_text = [](uint32_t rc) { return ui::rc_text((Result)rc); };
-    h.leave = leave;
-    h.answers = answers;
+    h.leave = leave_agent;
+    h.answers = [](std::string& why) { return hooks().answers ? hooks().answers(why) : answers(why); };
     h.delay = [](long ms, std::function<void()> fn) { aurore::delay(ms, std::move(fn)); };
     h.hold = hold;
     // The agent that was asked to leave comes back (one that was stopped is a
@@ -204,7 +211,7 @@ void stop(std::function<void()> done)
     if (!begin()) return;
     const auto end = finish(done);
     hold(true);
-    leave([end]() {
+    leave_agent([end]() {
         const Result rc = sysmodule_terminate(module().tid);
         ui::notify_result(rc, kit_text::str("agent/stopped"), kit_text::str("agent/error"));
         if (R_SUCCEEDED(rc)) record("stopped");
@@ -234,7 +241,7 @@ void remove(std::function<void()> done)
         return;
     }
     hold(true);
-    leave([erase, end]() {
+    leave_agent([erase, end]() {
         const Result rc = sysmodule_terminate(module().tid);
         if (R_FAILED(rc)) {
             ui::error(kit_text::str("agent/error"), rc);

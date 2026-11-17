@@ -14,6 +14,7 @@
 #include <string>
 
 #include "action/agent_manage_logic.hpp"
+#include "action/sysmodule_flow.hpp"
 #include "util/sysmodule.hpp"
 
 namespace agent_manage_flow
@@ -35,6 +36,12 @@ struct Hooks
     // Whether a change may go on now (a PIN to enter…): false stops it, the app
     // having said why. Unset: allowed.
     std::function<bool()> allowed;
+    // For an app that has its own way to ask the agent to leave the broker, or
+    // to know that the new one answers (a session of its own with it, a
+    // simulated agent on the desktop): the kit's are bl:link's Shutdown, then
+    // Info (the agent's protocol is the one this build speaks). Unset: the kit's.
+    std::function<void(std::function<void()> then)>  leave;
+    std::function<sysmodule_flow::Answer(std::string& why)> answers;
 };
 Hooks& hooks();
 
