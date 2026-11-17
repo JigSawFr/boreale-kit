@@ -24,7 +24,7 @@
         "installed_version": "Sur la carte SD : version {2} ({3})",
         "installing": "Installation de l'agent…",
         "meta_err": "L'agent est en place, mais ses informations n'ont pas pu être écrites",
-        "no_answer": "Le nouvel agent ne répond pas",
+        "no_answer": "aucune réponse en 10 s",
         "not_bundled": "Cette version de {0} ne porte pas l'agent",
         "other_protocol": "L'agent parle un autre protocole ({2}) : mettez à jour {0} ou l'agent",
         "remove": "Retirer",

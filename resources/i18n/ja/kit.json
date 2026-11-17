@@ -24,7 +24,7 @@
         "installed_version": "On the SD card: version {2} ({3})",
         "installing": "Installing the agent…",
         "meta_err": "The agent is in place, but its information could not be written",
-        "no_answer": "The new agent does not answer",
+        "no_answer": "no answer within 10 s",
         "not_bundled": "This build of {0} does not carry the agent",
         "other_protocol": "The agent speaks another protocol ({2}): update {0} or the agent",
         "remove": "Remove",
