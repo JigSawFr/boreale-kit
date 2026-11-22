@@ -48,6 +48,7 @@ frame_stats_SRC := source/util/paths.cpp source/util/frame_stats.cpp tests/frame
 rollback_SRC := source/util/paths.cpp source/util/rollback.cpp tests/rollback/test.cpp
 sysmodule_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp tests/sysmodule/test.cpp
 sysmodule_flow_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp source/action/sysmodule_flow.cpp tests/sysmodule_flow/test.cpp
+agent_release_SRC := source/util/agent_release.cpp source/util/update.cpp source/util/date.cpp tests/agent_release/test.cpp
 agent_manage_logic_SRC := source/util/paths.cpp source/util/sha256.cpp source/util/sysmodule.cpp source/action/agent_manage_logic.cpp tests/agent_manage_logic/test.cpp
 link_conf_logic_SRC := source/util/paths.cpp source/action/link_conf_logic.cpp tests/link_conf_logic/test.cpp
 link_conf_logic_CSRC := library/boreale-link/source/bl_kv.c library/boreale-link/source/bl_link_conf.c

@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "action/sysmodule_flow.hpp"
+#include "bl_relay.h"
 #include "bl_relay_nx.h"
 #include "core/sysmodule_nx.h"
 #include "kit_text.hpp"
@@ -251,6 +252,48 @@ void remove(std::function<void()> done)
             return;
         }
         erase();
+    });
+}
+
+void check_release(std::function<void(const agent_release::Check&)> done)
+{
+    const Status s = status();
+    const std::string sha = s.state.sha256, installed = s.state.version, carried = s.bundle.version;
+    ui::in_background("agent release", [sha, installed, carried, done]() {
+        const agent_release::Check c = agent_release::check(BL_RELAY_PROTOCOL, sha, installed, carried);
+        aurore::sync([c, done]() {
+            if (done) done(c);
+        });
+    });
+}
+
+void install_release(const agent_release::Manifest& release, std::function<void()> done)
+{
+    if (!begin()) return;
+    const auto end = finish(done);
+    ui::notify(kit_text::str("agent/release/downloading"));
+    const std::string dir = paths::data_dir() + "/agent_release";
+    ui::in_background("agent release download", [release, dir, end]() {
+        const std::string why = agent_release::download(release, dir);
+        aurore::sync([why, dir, end]() {
+            if (!why.empty()) {
+                ui::error(kit_text::str("agent/release/failed", why));
+                end();
+                return;
+            }
+            const Status s = status();
+            const sysmodule::Bundle bundle = sysmodule::bundled(dir, module());
+            if (!bundle.present) {
+                ui::error(kit_text::str("agent/release/failed", kit_text::str("agent/not_bundled")));
+                end();
+                return;
+            }
+            ui::notify(kit_text::str(s.state.installed ? "agent/updating" : "agent/installing"));
+            sysmodule_flow::run(host(), module(), bundle, [end](const sysmodule_flow::Outcome& o) {
+                tell(o);
+                end();
+            });
+        });
     });
 }
 

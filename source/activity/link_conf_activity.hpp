@@ -36,7 +36,6 @@ class LinkConfActivity : public aurore::Activity
     static std::string summary(const char** color = nullptr);
 
     void onContentAvailable() override;
-    void onResume() override;
 
   private:
     void build();
