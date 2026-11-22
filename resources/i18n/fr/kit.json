@@ -53,7 +53,19 @@
         "update_failed": "L'agent n'a pas été mis à jour : {2}",
         "updated": "L'agent est mis à jour",
         "updating": "Mise à jour de l'agent…",
-        "where": "Dossier : {2}"
+        "where": "Dossier : {2}",
+        "release": {
+            "check": "Chercher un agent plus récent",
+            "checking": "Vérification sur GitHub…",
+            "downloading": "Téléchargement de l'agent…",
+            "failed": "L'agent n'a pas pu être récupéré : {2}",
+            "incompatible": "Le dernier agent (version {2}) parle un autre protocole que cette version de {0} : mettez {0} à jour d'abord.",
+            "install": "Installer {2}",
+            "newer": "La version {2} de l'agent est disponible sur GitHub. L'installer ? Celui de la carte est gardé jusqu'à ce que le nouveau réponde.",
+            "no_release": "Aucune version de l'agent n'est publiée pour l'instant",
+            "offline": "GitHub n'a pas pu être consulté : {2}",
+            "up_to_date": "L'agent est à jour"
+        }
     },
     "common": {
         "delete": "Supprimer",

@@ -15,6 +15,7 @@
 
 #include "action/agent_manage_logic.hpp"
 #include "action/sysmodule_flow.hpp"
+#include "util/agent_release.hpp"
 #include "util/sysmodule.hpp"
 
 namespace agent_manage_flow
@@ -66,5 +67,14 @@ void stop(std::function<void()> done);      // a clean "offline" first
 void remove(std::function<void()> done);   // stops it first, then deletes its folder
 void set_at_boot(bool on);
 bool busy();
+
+// boreale-link's latest release: is there a newer agent than the one on the card
+// and the copy this app carries, and does it speak this build's protocol? Asks
+// GitHub off the UI thread and calls `done` (UI thread) with the answer.
+void check_release(std::function<void(const agent_release::Check&)> done);
+// Fetches that release's exefs (checked against its SHA-256) and installs it as
+// install() installs the carried copy: the previous one kept until the new one
+// answers, put back when it does not. `done` as for install().
+void install_release(const agent_release::Manifest& release, std::function<void()> done);
 
 }   // namespace agent_manage_flow

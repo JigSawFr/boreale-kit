@@ -107,6 +107,27 @@ void AgentActivity::build()
         }));
     }
 
+    // boreale-link's releases: a newer agent than the carried copy and the one on the card.
+    this->list->addView(row(kit_text::str("agent/release/check"), "GitHub", [again]() {
+        ui::notify(kit_text::str("agent/release/checking"));
+        agent_manage_flow::check_release([again](const agent_release::Check& c) {
+            using agent_release::Verdict;
+            switch (c.verdict) {
+                case Verdict::UpToDate: ui::notify(kit_text::str("agent/release/up_to_date")); break;
+                case Verdict::NoRelease: ui::notify(kit_text::str("agent/release/no_release")); break;
+                case Verdict::Incompatible: ui::info(kit_text::str("agent/release/incompatible", c.release.version)); break;
+                case Verdict::Unknown: ui::error(kit_text::str("agent/release/offline", c.error)); break;
+                case Verdict::Newer: {
+                    const agent_release::Manifest release = c.release;
+                    ui::confirm(kit_text::str("agent/release/newer", release.version),
+                                kit_text::str("agent/release/install", release.version),
+                                [again, release]() { agent_manage_flow::install_release(release, again); }, nullptr);
+                    break;
+                }
+            }
+        });
+    }));
+
     if (s.state.installed) {
         this->list->addView(row(kit_text::str(s.running ? "agent/stop" : "agent/start"), "", [again, running = s.running]() {
             if (running) agent_manage_flow::stop(again);

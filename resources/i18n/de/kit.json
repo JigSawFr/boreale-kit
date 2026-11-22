@@ -53,7 +53,19 @@
         "update_failed": "The agent was not updated: {2}",
         "updated": "The agent is updated",
         "updating": "Updating the agent…",
-        "where": "Folder: {2}"
+        "where": "Folder: {2}",
+        "release": {
+            "check": "Check for a newer agent",
+            "checking": "Checking GitHub…",
+            "downloading": "Downloading the agent…",
+            "failed": "The agent could not be fetched: {2}",
+            "incompatible": "The latest agent (version {2}) speaks another protocol than this build of {0}: update {0} first.",
+            "install": "Install {2}",
+            "newer": "Version {2} of the agent is available on GitHub. Install it? The one on the card is kept until it answers.",
+            "no_release": "No agent release is published yet",
+            "offline": "Could not check GitHub: {2}",
+            "up_to_date": "The agent is up to date"
+        }
     },
     "common": {
         "delete": "Löschen",
