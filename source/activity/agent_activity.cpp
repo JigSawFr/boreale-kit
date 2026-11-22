@@ -67,12 +67,6 @@ void AgentActivity::onContentAvailable()
     this->build();
 }
 
-// Back from a dialog or another screen: what changed meanwhile is shown.
-void AgentActivity::onResume()
-{
-    this->build();
-}
-
 void AgentActivity::build()
 {
     this->list->clearViews(true);

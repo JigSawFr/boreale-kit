@@ -62,11 +62,6 @@ void LinkConfActivity::onContentAvailable()
     this->build();
 }
 
-void LinkConfActivity::onResume()
-{
-    this->build();
-}
-
 bool LinkConfActivity::commit(const BlLinkConf& next)
 {
     if (this->newer) {

@@ -16,7 +16,6 @@ class AgentActivity : public aurore::Activity
     CONTENT_FROM_XML_RES("activity/agent.xml");
 
     void onContentAvailable() override;
-    void onResume() override;
 
     // "Installed", "Update available"… in one or two words, and its colour
     // when `color` is given: for the cell of the app's Preferences that opens
