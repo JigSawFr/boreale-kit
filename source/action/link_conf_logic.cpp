@@ -74,6 +74,12 @@ std::string check_port(const std::string& text, int* port)
     return "";
 }
 
+void apply_port(BlLinkConf& conf, int port)
+{
+    if (port == 8883 && conf.port != 8883) conf.tls = true;
+    conf.port = (uint16_t)port;
+}
+
 std::string check_prefix(const std::string& prefix)
 {
     if (prefix.empty()) return "prefix_empty";
