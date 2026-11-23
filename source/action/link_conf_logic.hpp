@@ -34,6 +34,10 @@ bool save(const std::string& sd_root, const BlLinkConf& conf, std::string* error
 // catalog key under "link/invalid/" that says why.
 std::string check_host(const std::string& host);
 std::string check_port(const std::string& text, int* port);
+
+// Sets the port; moving it to the MQTT TLS port (8883) turns TLS on, as the
+// consoles' broker screens always did. Any other port leaves TLS as it is.
+void apply_port(BlLinkConf& conf, int port);
 std::string check_prefix(const std::string& prefix);   // a topic prefix: no wildcard, no space
 std::string check_name(const std::string& name);       // the console's name: may be empty (its own)
 

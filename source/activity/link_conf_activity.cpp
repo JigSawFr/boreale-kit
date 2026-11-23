@@ -133,7 +133,7 @@ void LinkConfActivity::build()
             [](BlLinkConf& n, const std::string& t) {
                 int port = n.port;
                 link_conf_logic::check_port(t, &port);
-                n.port = (uint16_t)port;
+                link_conf_logic::apply_port(n, port);
             });
     }));
 

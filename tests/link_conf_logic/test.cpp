@@ -86,6 +86,26 @@ static void test_checks()
     CHECK(link_conf_logic::check_name(std::string(60, 'n')) == "name_long");
 }
 
+static void test_apply_port()
+{
+    BlLinkConf c;
+    bl_link_conf_defaults(&c);
+    c.port = 1883;
+    c.tls  = false;
+    link_conf_logic::apply_port(c, 8884);
+    CHECK(c.port == 8884 && !c.tls);   // another port: TLS untouched
+    link_conf_logic::apply_port(c, 8883);
+    CHECK(c.port == 8883 && c.tls);    // 8883: TLS comes on
+    c.tls = false;
+    link_conf_logic::apply_port(c, 8883);
+    CHECK(c.port == 8883 && !c.tls);   // already 8883: the user's choice stays
+    link_conf_logic::apply_port(c, 1883);
+    CHECK(c.port == 1883 && !c.tls);
+    c.tls = true;
+    link_conf_logic::apply_port(c, 1883);
+    CHECK(c.tls);                      // leaving 8883 never switches TLS off
+}
+
 static void test_summary()
 {
     BlLinkConf c;
@@ -103,6 +123,7 @@ int main()
 {
     test_files();
     test_checks();
+    test_apply_port();
     test_summary();
     CHECK_DONE("link_conf_logic: link.conf kept, a newer one left alone, the checks, the summary");
 }
